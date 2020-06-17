@@ -1,0 +1,12 @@
+# Netbeans Project directories
+nbproject/
+dist/
+test/
+
+# Build files
+build/
+build.xml
+
+# Manifest files
+manifest.mf
+
