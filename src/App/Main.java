@@ -20,6 +20,7 @@ public class Main extends Application
         StackPane root = new StackPane();
         Canvas canvas = new Canvas(400, 400);
         GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc=draw.draw_basic_skeleton(gc);
         gc=draw.draw_cross(gc, 50+15, 50+15);
         gc=draw.draw_circle(gc, 50+15+70+30, 50+15);
         gc=draw.draw_cross(gc, 50+15+70+30+70+30, 50+15);

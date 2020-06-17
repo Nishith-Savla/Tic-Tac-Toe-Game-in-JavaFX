@@ -10,6 +10,16 @@ public class Draw
 {
     Pane pane = new Pane();
     
+    protected GraphicsContext draw_basic_skeleton(GraphicsContext gc)
+    {
+        gc.strokeLine(50+15+70+15, 50, 50+15+70+15, 50+15+70+15+70+15+70+15); // Vertical left
+        gc.strokeLine(50+15+70+15+70+15+15, 50, 50+15+70+15+70+15+15, 50+15+70+15+70+15+70+15); // Vertical right
+        gc.strokeLine(50, 50+15+70+15, 50+15+70+15+70+15+70+15+15+15, 50+15+70+15); // Horizontal up
+        gc.strokeLine(50, 50+15+70+15+70+15+15, 50+15+70+15+70+15+70+15+15+15, 50+15+70+15+70+15+15); // Horizontal right
+        return gc;
+    }
+
+    
     /* Some cheat-sheets (co-ordinates) for methods 
      *
      * -- 1st row
