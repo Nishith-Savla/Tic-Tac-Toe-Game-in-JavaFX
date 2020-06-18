@@ -1,36 +1,25 @@
 package App;
 
+import java.io.IOException;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 // @author Nishith
 public class Main extends Application
 {
 
-    Draw draw = new Draw();
-
     @Override
-    public void start(Stage primaryStage)
+    public void start(Stage primaryStage) throws IOException
     {
-        StackPane root = new StackPane();
-        Canvas canvas = new Canvas(400, 400);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc=draw.draw_basic_skeleton(gc);
-        gc=draw.draw_cross(gc, 50+15, 50+15);
-        gc=draw.draw_circle(gc, 50+15+70+30, 50+15);
-        gc=draw.draw_cross(gc, 50+15+70+30+70+30, 50+15);
-        root.getChildren().addAll(canvas);
-        Scene scene = new Scene(root, 400, 400);
+        Parent root = FXMLLoader.load(getClass().getResource("/FXML_Files/GameUI.fxml"));
+        Scene scene = new Scene(root);
         primaryStage.setTitle("TicTacToe Game!");
         primaryStage.setScene(scene);
         primaryStage.show();
-        
-        
+
     }
 
     /**
