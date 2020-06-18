@@ -11,6 +11,7 @@ public class Draw
 
     public GraphicsContext draw_basic_skeleton(GraphicsContext gc)
     {
+        gc.setLineWidth(5);
         gc.setStroke(Color.WHITE);
         gc.strokeLine(50 + 15 + 70 + 15/*X1*/, 50 + 15/*Y1*/, 50 + 15 + 70 + 15/*X2*/, 50 + 15 + 70 + 15 + 70 + 15 + 70 + 15 + 15 + 15 + 15/*Y2*/); // Vertical left
         gc.strokeLine(50 + 15 + 70 + 15 + 70 + 15 + 15/*X1*/, 50 + 15/*Y1*/, 50 + 15 + 70 + 15 + 70 + 15 + 15/*X2*/, 50 + 15 + 70 + 15 + 70 + 15 + 70 + 15 + 15 + 15 + 15/*Y2*/); // Vertical right

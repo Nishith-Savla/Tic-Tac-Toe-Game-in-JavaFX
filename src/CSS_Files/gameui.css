@@ -7,3 +7,8 @@
 {
     -fx-background-color: #000;
 }
+
+Label, JFXRadioButton
+{
+    -fx-text-fill: #fff;
+}
