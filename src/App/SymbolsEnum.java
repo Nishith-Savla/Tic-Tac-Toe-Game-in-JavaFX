@@ -1,4 +1,3 @@
-
 package App;
 
 public enum SymbolsEnum

@@ -37,8 +37,7 @@ public class Draw
      * 50+15+70+30, 50+15+70+30+70+30
      * 50+15+70+30+70+30, 50+15+70+30+70+30
      */
-    
-    /*
+ /*
     public GraphicsContext draw_try(GraphicsContext gc)
     {
         gc=draw.draw_circle(gc, 50+15, 50+15+15);
@@ -62,7 +61,7 @@ public class Draw
         gc=draw.draw_cross(gc, 50+15+70+30+70+30, 50+15+70+30+70+30+15);
         return gc;
     }
-    */
+     */
     public static GraphicsContext draw_cross(GraphicsContext gc, double startX, double startY)
     {
         gc.setLineWidth(7);

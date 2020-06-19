@@ -6,6 +6,7 @@ package App;
  */
 public class Turn
 {
+
     private static Player turn;
 
     public static Player getTurn()
@@ -17,5 +18,5 @@ public class Turn
     {
         Turn.turn = turn;
     }
-    
+
 }

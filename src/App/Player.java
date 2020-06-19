@@ -7,5 +7,6 @@ package App;
 public class Player
 {
 //    public;
+
     public SymbolsEnum symbol;
 }

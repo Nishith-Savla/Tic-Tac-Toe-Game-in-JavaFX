@@ -21,7 +21,7 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author Nishith
  */
-public class GameUIController implements Initializable
+public class GameUIController extends Turn implements Initializable // Making 'Turn' Class parent to avoid repeated reference to class for accessing its static fields
 {
 
     GraphicsContext gc;
@@ -80,7 +80,7 @@ public class GameUIController implements Initializable
     private ToggleGroup GroupP2;
 
     @FXML
-    void playerSymbol(ActionEvent event)
+    void player1Symbol(ActionEvent event)
     {
         b1.setDisable(false);
         b2.setDisable(false);
@@ -95,27 +95,50 @@ public class GameUIController implements Initializable
             O2.setSelected(true);
             player1.symbol = SymbolsEnum.CROSS;
             player2.symbol = SymbolsEnum.ROUND;
-        } else if (O1.isSelected()) {
+        } else {
             X2.setSelected(true);
             player1.symbol = SymbolsEnum.ROUND;
             player2.symbol = SymbolsEnum.CROSS;
-        } else if (X2.isSelected()) {
-            O1.setSelected(true);
-            player1.symbol = SymbolsEnum.ROUND;
-            player2.symbol = SymbolsEnum.CROSS;
+        }
+        if (player1.symbol == SymbolsEnum.CROSS) {
+            setTurn(player1);
         } else {
-            X1.setSelected(true);
+            setTurn(player2);
+        }
+    }
+
+    @FXML
+    void player2Symbol(ActionEvent event)
+    {
+        b1.setDisable(false);
+        b2.setDisable(false);
+        b3.setDisable(false);
+        b4.setDisable(false);
+        b5.setDisable(false);
+        b6.setDisable(false);
+        b7.setDisable(false);
+        b8.setDisable(false);
+        b9.setDisable(false);
+        if (X2.isSelected()) {
+            O1.setSelected(true);
             player1.symbol = SymbolsEnum.CROSS;
             player2.symbol = SymbolsEnum.ROUND;
+        } else {
+            X1.setSelected(true);
+            player1.symbol = SymbolsEnum.ROUND;
+            player2.symbol = SymbolsEnum.CROSS;
         }
-        System.out.println(player1.symbol);
-        System.out.println(player2.symbol);
+        if (player1.symbol == SymbolsEnum.CROSS) {
+            setTurn(player1);
+        } else {
+            setTurn(player2);
+        }
     }
 
     @FXML
     void eventb1(ActionEvent event)
     {
-        draw(50+15, 50+15+15);
+        draw(50 + 15, 50 + 15 + 15);
         ChangeTurn();
         b1.setDisable(true);
     }
@@ -123,7 +146,7 @@ public class GameUIController implements Initializable
     @FXML
     void eventb2(ActionEvent event)
     {
-        draw(50+15+70+30, 50+15+15);
+        draw(50 + 15 + 70 + 30, 50 + 15 + 15);
         ChangeTurn();
         b2.setDisable(true);
     }
@@ -131,7 +154,7 @@ public class GameUIController implements Initializable
     @FXML
     void eventb3(ActionEvent event)
     {
-        draw(50+15+70+30+70+30, 50+15+15);
+        draw(50 + 15 + 70 + 30 + 70 + 30, 50 + 15 + 15);
         ChangeTurn();
         b3.setDisable(true);
     }
@@ -139,7 +162,7 @@ public class GameUIController implements Initializable
     @FXML
     void eventb4(ActionEvent event)
     {
-        draw(50+15, 50+15+70+30+15);
+        draw(50 + 15, 50 + 15 + 70 + 30 + 15);
         ChangeTurn();
         b4.setDisable(true);
     }
@@ -147,7 +170,7 @@ public class GameUIController implements Initializable
     @FXML
     void eventb5(ActionEvent event)
     {
-        draw(50+15+70+30, 50+15+70+30+15);
+        draw(50 + 15 + 70 + 30, 50 + 15 + 70 + 30 + 15);
         ChangeTurn();
         b5.setDisable(true);
     }
@@ -155,7 +178,7 @@ public class GameUIController implements Initializable
     @FXML
     void eventb6(ActionEvent event)
     {
-        draw(50+15+70+30+70+30, 50+15+70+30+15);
+        draw(50 + 15 + 70 + 30 + 70 + 30, 50 + 15 + 70 + 30 + 15);
         ChangeTurn();
         b6.setDisable(true);
     }
@@ -163,7 +186,7 @@ public class GameUIController implements Initializable
     @FXML
     void eventb7(ActionEvent event)
     {
-        draw(50+15, 50+15+70+30+70+30+15);
+        draw(50 + 15, 50 + 15 + 70 + 30 + 70 + 30 + 15);
         ChangeTurn();
         b7.setDisable(true);
     }
@@ -171,7 +194,7 @@ public class GameUIController implements Initializable
     @FXML
     void eventb8(ActionEvent event)
     {
-        draw(50+15+70+30, 50+15+70+30+70+30+15);
+        draw(50 + 15 + 70 + 30, 50 + 15 + 70 + 30 + 70 + 30 + 15);
         ChangeTurn();
         b8.setDisable(true);
     }
@@ -179,12 +202,11 @@ public class GameUIController implements Initializable
     @FXML
     void eventb9(ActionEvent event)
     {
-        draw(50+15+70+30+70+30, 50+15+70+30+70+30+15);
+        draw(50 + 15 + 70 + 30 + 70 + 30, 50 + 15 + 70 + 30 + 70 + 30 + 15);
         ChangeTurn();
         b9.setDisable(true);
     }
 
-    
     /**
      * Initializes the controller class.
      *
@@ -196,30 +218,28 @@ public class GameUIController implements Initializable
     {
         player1 = new Player();
         player2 = new Player();
-        Turn.setTurn(player1);
         gc = canvas.getGraphicsContext2D();
         gc = Draw.draw_basic_skeleton(gc);
-        //gc=draw_try(gc);
     }
 
     private void ChangeTurn()
     {
-        if (Turn.getTurn() == player1) {
-            Turn.setTurn(player2);
+        if (getTurn() == player1) {
+            setTurn(player2);
         } else {
-            Turn.setTurn(player1);
+            setTurn(player1);
         }
     }
-    
+
     private void draw(double startX, double startY)
     {
-        if (Turn.getTurn() == player1) {
+        if (getTurn() == player1) {
             if (player1.symbol == SymbolsEnum.CROSS) {
                 Draw.draw_cross(gc, startX, startY);
             } else {
                 Draw.draw_circle(gc, startX, startY);
             }
-        } else if(Turn.getTurn() == player2){
+        } else if (getTurn() == player2) {
             if (player2.symbol == SymbolsEnum.CROSS) {
                 Draw.draw_cross(gc, startX, startY);
             } else {
