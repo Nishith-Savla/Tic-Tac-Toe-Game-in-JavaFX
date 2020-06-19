@@ -4,7 +4,7 @@ package App;
  *
  * @author Nishith
  */
-public class Players
+public class Player
 {
 //    public;
     public SymbolsEnum symbol;

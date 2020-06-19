@@ -12,3 +12,8 @@ Label, JFXRadioButton
 {
     -fx-text-fill: #fff;
 }
+
+JFXButton
+{
+    -fx-background-color: transparent;
+}

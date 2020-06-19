@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
 public class Draw
 {
 
-    public GraphicsContext draw_basic_skeleton(GraphicsContext gc)
+    public static GraphicsContext draw_basic_skeleton(GraphicsContext gc)
     {
         gc.setLineWidth(5);
         gc.setStroke(Color.WHITE);
@@ -37,7 +37,33 @@ public class Draw
      * 50+15+70+30, 50+15+70+30+70+30
      * 50+15+70+30+70+30, 50+15+70+30+70+30
      */
-    public GraphicsContext draw_cross(GraphicsContext gc, double startX, double startY)
+    
+    /*
+    public GraphicsContext draw_try(GraphicsContext gc)
+    {
+        gc=draw.draw_circle(gc, 50+15, 50+15+15);
+        gc=draw.draw_circle(gc, 50+15, 50+15+70+30+15);
+        gc=draw.draw_circle(gc, 50+15, 50+15+70+30+70+30+15);
+        gc=draw.draw_circle(gc, 50+15+70+30, 50+15+15);
+        gc=draw.draw_circle(gc, 50+15+70+30, 50+15+70+30+15);
+        gc=draw.draw_circle(gc, 50+15+70+30, 50+15+70+30+70+30+15);
+        gc=draw.draw_circle(gc, 50+15+70+30+70+30, 50+15+15);
+        gc=draw.draw_circle(gc, 50+15+70+30+70+30, 50+15+70+30+15);
+        gc=draw.draw_circle(gc, 50+15+70+30+70+30, 50+15+70+30+70+30+15);
+        
+        gc=draw.draw_cross(gc, 50+15, 50+15+15);
+        gc=draw.draw_cross(gc, 50+15, 50+15+70+30+15);
+        gc=draw.draw_cross(gc, 50+15, 50+15+70+30+70+30+15);
+        gc=draw.draw_cross(gc, 50+15+70+30, 50+15+15);
+        gc=draw.draw_cross(gc, 50+15+70+30, 50+15+70+30+15);
+        gc=draw.draw_cross(gc, 50+15+70+30, 50+15+70+30+70+30+15);
+        gc=draw.draw_cross(gc, 50+15+70+30+70+30, 50+15+15);
+        gc=draw.draw_cross(gc, 50+15+70+30+70+30, 50+15+70+30+15);
+        gc=draw.draw_cross(gc, 50+15+70+30+70+30, 50+15+70+30+70+30+15);
+        return gc;
+    }
+    */
+    public static GraphicsContext draw_cross(GraphicsContext gc, double startX, double startY)
     {
         gc.setLineWidth(7);
         gc.strokeLine(startX, startY, startX + 70, startY + 70);
@@ -46,7 +72,7 @@ public class Draw
         return gc;
     }
 
-    public GraphicsContext draw_circle(GraphicsContext gc, double startX, double startY)
+    public static GraphicsContext draw_circle(GraphicsContext gc, double startX, double startY)
     {
         gc.setLineWidth(7);
         gc.strokeOval(startX, startY, 70, 70);
