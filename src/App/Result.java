@@ -40,6 +40,8 @@ public class Result
             System.out.println(tempList);
             if (player1moves.containsAll(tempList)) {
                 return true;
+            } else if (player2moves.containsAll(tempList)) {
+                return true;
             }
             tempList.clear();
         }

@@ -8,12 +8,19 @@
     -fx-background-color: #000;
 }
 
-Label, JFXRadioButton
+Label
 {
     -fx-text-fill: #fff;
+    -fx-font: 17px "Comic Sans MS";
 }
 
 JFXButton
 {
     -fx-background-color: transparent;
+}
+
+JFXRadioButton
+{
+    -fx-text-fill: #fff;
+    -fx-font: 14px "Comic Sans MS";
 }
