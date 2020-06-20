@@ -2,6 +2,7 @@ package Controllers;
 
 import App.Draw;
 import App.Player;
+import App.Result;
 import App.SymbolsEnum;
 import App.Turn;
 import com.jfoenix.controls.JFXButton;
@@ -27,6 +28,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     GraphicsContext gc;
     Player player1;
     Player player2;
+    boolean win;
 
     @FXML
     private AnchorPane aPane;
@@ -138,6 +140,8 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void eventb1(ActionEvent event)
     {
+
+        win = Result.add(player1, player2, 1);
         draw(50 + 15, 50 + 15 + 15);
         ChangeTurn();
         b1.setDisable(true);
@@ -146,6 +150,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void eventb2(ActionEvent event)
     {
+        win = Result.add(player1, player2, 2);
         draw(50 + 15 + 70 + 30, 50 + 15 + 15);
         ChangeTurn();
         b2.setDisable(true);
@@ -154,6 +159,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void eventb3(ActionEvent event)
     {
+        win = Result.add(player1, player2, 3);
         draw(50 + 15 + 70 + 30 + 70 + 30, 50 + 15 + 15);
         ChangeTurn();
         b3.setDisable(true);
@@ -162,6 +168,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void eventb4(ActionEvent event)
     {
+        win = Result.add(player1, player2, 4);
         draw(50 + 15, 50 + 15 + 70 + 30 + 15);
         ChangeTurn();
         b4.setDisable(true);
@@ -170,6 +177,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void eventb5(ActionEvent event)
     {
+        win = Result.add(player1, player2, 5);
         draw(50 + 15 + 70 + 30, 50 + 15 + 70 + 30 + 15);
         ChangeTurn();
         b5.setDisable(true);
@@ -178,6 +186,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void eventb6(ActionEvent event)
     {
+        win = Result.add(player1, player2, 6);
         draw(50 + 15 + 70 + 30 + 70 + 30, 50 + 15 + 70 + 30 + 15);
         ChangeTurn();
         b6.setDisable(true);
@@ -186,6 +195,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void eventb7(ActionEvent event)
     {
+        win = Result.add(player1, player2, 7);
         draw(50 + 15, 50 + 15 + 70 + 30 + 70 + 30 + 15);
         ChangeTurn();
         b7.setDisable(true);
@@ -194,6 +204,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void eventb8(ActionEvent event)
     {
+        win = Result.add(player1, player2, 8);
         draw(50 + 15 + 70 + 30, 50 + 15 + 70 + 30 + 70 + 30 + 15);
         ChangeTurn();
         b8.setDisable(true);
@@ -202,6 +213,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void eventb9(ActionEvent event)
     {
+        win = Result.add(player1, player2, 9);
         draw(50 + 15 + 70 + 30 + 70 + 30, 50 + 15 + 70 + 30 + 70 + 30 + 15);
         ChangeTurn();
         b9.setDisable(true);
@@ -233,6 +245,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
 
     private void draw(double startX, double startY)
     {
+        System.out.println(win);
         if (getTurn() == player1) {
             if (player1.symbol == SymbolsEnum.CROSS) {
                 Draw.draw_cross(gc, startX, startY);
@@ -246,5 +259,26 @@ public class GameUIController extends Turn implements Initializable // Making 'T
                 Draw.draw_circle(gc, startX, startY);
             }
         }
+        if (win) {
+            if (Turn.getTurn() == player1) {
+                showAlert("Player1");
+            } else {
+                showAlert("Player2");
+            }
+            b1.setDisable(true);
+            b2.setDisable(true);
+            b3.setDisable(true);
+            b4.setDisable(true);
+            b5.setDisable(true);
+            b6.setDisable(true);
+            b7.setDisable(true);
+            b8.setDisable(true);
+            b9.setDisable(true);
+        }
+    }
+
+    private static void showAlert(String player)
+    {
+        Alerts.Message.setMessage("Congratulations, " + player + " wins!");
     }
 }
