@@ -32,18 +32,17 @@ public class Result
 
     public static boolean checkWin()
     {
-        List<Integer> tempList = new ArrayList<>();
+        List<Integer> winInstance = new ArrayList<>();
         for (int[] possibility : possibilities) {
             for (int num : possibility) {
-                tempList.add(num);
+                winInstance.add(num);
             }
-            System.out.println(tempList);
-            if (player1moves.containsAll(tempList)) {
+            if (player1moves.containsAll(winInstance)) {
                 return true;
-            } else if (player2moves.containsAll(tempList)) {
+            } else if (player2moves.containsAll(winInstance)) {
                 return true;
             }
-            tempList.clear();
+            winInstance.clear();
         }
         
         return false;
