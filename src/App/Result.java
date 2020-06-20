@@ -19,7 +19,7 @@ public class Result
         {1, 4, 7}, {2, 5, 8}, {3, 6, 9},
         {1, 5, 9}, {3, 5, 7}
     };
-    
+
     public static boolean add(Player player1, Player player2, int num)
     {
         if (Turn.getTurn() == player1) {
@@ -44,7 +44,13 @@ public class Result
             }
             winInstance.clear();
         }
-        
+
         return false;
+    }
+
+    public static void clearMoves()
+    {
+        player1moves.clear();
+        player2moves.clear();
     }
 }

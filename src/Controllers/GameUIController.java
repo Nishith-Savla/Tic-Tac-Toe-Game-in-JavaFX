@@ -1,14 +1,17 @@
 package Controllers;
 
 import App.Draw;
+import App.Main;
 import App.Player;
 import App.Result;
 import App.SymbolsEnum;
 import App.Turn;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,6 +19,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -82,6 +86,9 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     private ToggleGroup GroupP2;
 
     @FXML
+    private JFXButton reset;
+
+    @FXML
     void player1Symbol(ActionEvent event)
     {
         b1.setDisable(false);
@@ -135,6 +142,21 @@ public class GameUIController extends Turn implements Initializable // Making 'T
         } else {
             setTurn(player2);
         }
+    }
+
+    @FXML
+    void resetButton(ActionEvent event)
+    {
+        System.out.println("Restarting app!");
+        ((Stage) reset.getScene().getWindow()).close();
+        Platform.runLater(() -> {
+            try {
+                new Main().start(new Stage());
+                Result.clearMoves();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
     }
 
     @FXML
@@ -245,7 +267,6 @@ public class GameUIController extends Turn implements Initializable // Making 'T
 
     private void draw(double startX, double startY)
     {
-        System.out.println(win);
         if (getTurn() == player1) {
             if (player1.symbol == SymbolsEnum.CROSS) {
                 Draw.draw_cross(gc, startX, startY);
@@ -277,8 +298,10 @@ public class GameUIController extends Turn implements Initializable // Making 'T
         }
     }
 
-    private static void showAlert(String player)
+    private void showAlert(String player)
     {
         Alerts.Message.setMessage("Congratulations, " + player + " wins!");
+//        Main.restart((Stage)aPane.getScene().getWindow(), reset);
     }
+
 }
