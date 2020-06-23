@@ -11,14 +11,14 @@
 <AnchorPane fx:id="aPane" prefHeight="425.0" prefWidth="400.0" stylesheets="@../CSS_Files/gameui.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GameUIController">
     <children>
         <Canvas fx:id="canvas" height="425.0" width="400.0" />
-        <Label layoutX="15.0" layoutY="27.0" prefHeight="30.0" prefWidth="70.0" text="Player1: " />
+        <Label fx:id="p1" layoutX="15.0" layoutY="27.0" prefHeight="30.0" prefWidth="70.0" text="Player1: " />
         <JFXRadioButton fx:id="X1" layoutX="90.0" layoutY="31.0" onAction="#player1Symbol" prefHeight="15.0" prefWidth="30.0" text="X">
             <toggleGroup>
                 <ToggleGroup fx:id="GroupP1" />
             </toggleGroup>
         </JFXRadioButton>
         <JFXRadioButton fx:id="O1" layoutX="145.0" layoutY="31.0" onAction="#player1Symbol" prefHeight="15.0" prefWidth="30.0" text="O" toggleGroup="$GroupP1" />
-        <Label layoutX="215.0" layoutY="27.0" prefHeight="30.0" prefWidth="70.0" text="Player2: " />
+        <Label fx:id="p2" layoutX="215.0" layoutY="27.0" prefHeight="30.0" prefWidth="70.0" text="Player2: " />
         <JFXRadioButton fx:id="X2" layoutX="285.0" layoutY="31.0" onAction="#player2Symbol" prefHeight="15.0" prefWidth="30.0" text="X">
             <toggleGroup>
                 <ToggleGroup fx:id="GroupP2" />

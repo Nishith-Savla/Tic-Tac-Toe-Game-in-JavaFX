@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -58,6 +59,12 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     private JFXButton b9;
 
+    // Labels for players
+    @FXML
+    private Label p1;
+    @FXML
+    private Label p2;
+    
     @FXML
     private JFXRadioButton X1;
     @FXML
@@ -101,8 +108,10 @@ public class GameUIController extends Turn implements Initializable // Making 'T
         // Set initial turn for player with symbol CROSS
         if (player1.getSymbol() == SymbolsEnum.CROSS) {
             setTurn(player1);
+            p1.setUnderline(true);
         } else {
             setTurn(player2);
+            p2.setUnderline(true);
         }
     }
 
@@ -259,8 +268,13 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     {
         if (getTurn() == player1) {
             setTurn(player2);
+            p1.setUnderline(false);
+            p2.setUnderline(true);
+            
         } else {
             setTurn(player1);
+            p1.setUnderline(true);
+            p2.setUnderline(false);
         }
     }
 
