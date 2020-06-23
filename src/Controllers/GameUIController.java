@@ -64,7 +64,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     private Label p1;
     @FXML
     private Label p2;
-    
+
     @FXML
     private JFXRadioButton X1;
     @FXML
@@ -109,14 +109,16 @@ public class GameUIController extends Turn implements Initializable // Making 'T
         if (player1.getSymbol() == SymbolsEnum.CROSS) {
             setTurn(player1);
             p1.setUnderline(true);
+            p2.setUnderline(false);
         } else {
             setTurn(player2);
             p2.setUnderline(true);
+            p1.setUnderline(false);
         }
     }
 
     /**
-     * The radio button event ti=o select the clicked and also to select the
+     * The radio button event to select the clicked and also to select the
      * opposite for other player (Player 1 here)
      *
      * @param event OnClick Action Event
@@ -139,8 +141,12 @@ public class GameUIController extends Turn implements Initializable // Making 'T
         // Set initial turn for player with symbol CROSS
         if (player1.getSymbol() == SymbolsEnum.CROSS) {
             setTurn(player1);
+            p1.setUnderline(true);
+            p2.setUnderline(false);
         } else {
             setTurn(player2);
+            p2.setUnderline(true);
+            p1.setUnderline(false);
         }
     }
 
@@ -168,6 +174,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void eventb1(ActionEvent event)
     {
+        disableRadioButtons(true);
         win = Result.add(player1, player2, 1);
         draw(50 + 15, 50 + 15 + 15);
         ChangeTurn();
@@ -177,6 +184,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void eventb2(ActionEvent event)
     {
+        disableRadioButtons(true);
         win = Result.add(player1, player2, 2);
         draw(50 + 15 + 70 + 30, 50 + 15 + 15);
         ChangeTurn();
@@ -186,6 +194,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void eventb3(ActionEvent event)
     {
+        disableRadioButtons(true);
         win = Result.add(player1, player2, 3);
         draw(50 + 15 + 70 + 30 + 70 + 30, 50 + 15 + 15);
         ChangeTurn();
@@ -195,6 +204,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void eventb4(ActionEvent event)
     {
+        disableRadioButtons(true);
         win = Result.add(player1, player2, 4);
         draw(50 + 15, 50 + 15 + 70 + 30 + 15);
         ChangeTurn();
@@ -204,6 +214,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void eventb5(ActionEvent event)
     {
+        disableRadioButtons(true);
         win = Result.add(player1, player2, 5);
         draw(50 + 15 + 70 + 30, 50 + 15 + 70 + 30 + 15);
         ChangeTurn();
@@ -213,6 +224,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void eventb6(ActionEvent event)
     {
+        disableRadioButtons(true);
         win = Result.add(player1, player2, 6);
         draw(50 + 15 + 70 + 30 + 70 + 30, 50 + 15 + 70 + 30 + 15);
         ChangeTurn();
@@ -222,6 +234,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void eventb7(ActionEvent event)
     {
+        disableRadioButtons(true);
         win = Result.add(player1, player2, 7);
         draw(50 + 15, 50 + 15 + 70 + 30 + 70 + 30 + 15);
         ChangeTurn();
@@ -231,6 +244,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void eventb8(ActionEvent event)
     {
+        disableRadioButtons(true);
         win = Result.add(player1, player2, 8);
         draw(50 + 15 + 70 + 30, 50 + 15 + 70 + 30 + 70 + 30 + 15);
         ChangeTurn();
@@ -240,6 +254,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void eventb9(ActionEvent event)
     {
+        disableRadioButtons(true);
         win = Result.add(player1, player2, 9);
         draw(50 + 15 + 70 + 30 + 70 + 30, 50 + 15 + 70 + 30 + 70 + 30 + 15);
         ChangeTurn();
@@ -270,7 +285,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
             setTurn(player2);
             p1.setUnderline(false);
             p2.setUnderline(true);
-            
+
         } else {
             setTurn(player1);
             p1.setUnderline(true);
@@ -329,6 +344,19 @@ public class GameUIController extends Turn implements Initializable // Making 'T
         b7.setDisable(option);
         b8.setDisable(option);
         b9.setDisable(option);
+    }
+
+    /**
+     * Disables or enables all radio buttons
+     *
+     * @param option This could be true or false
+     */
+    private void disableRadioButtons(boolean option)
+    {
+        X1.setDisable(option);
+        O1.setDisable(option);
+        X2.setDisable(option);
+        O2.setDisable(option);
     }
 
     /**
