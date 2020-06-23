@@ -90,16 +90,16 @@ public class GameUIController extends Turn implements Initializable // Making 'T
         if (X1.isSelected()) {
             O2.setSelected(true);
             // Setting Symbols for players
-            player1.symbol = SymbolsEnum.CROSS;
-            player2.symbol = SymbolsEnum.ROUND;
+            player1.setSymbol(SymbolsEnum.CROSS);
+            player2.setSymbol(SymbolsEnum.ROUND);
         } else if (O1.isSelected()) {
             X2.setSelected(true);
             // Setting Symbols for players
-            player1.symbol = SymbolsEnum.ROUND;
-            player2.symbol = SymbolsEnum.CROSS;
+            player1.setSymbol(SymbolsEnum.ROUND);
+            player2.setSymbol(SymbolsEnum.CROSS);
         }
         // Set initial turn for player with symbol CROSS
-        if (player1.symbol == SymbolsEnum.CROSS) {
+        if (player1.getSymbol() == SymbolsEnum.CROSS) {
             setTurn(player1);
         } else {
             setTurn(player2);
@@ -119,16 +119,16 @@ public class GameUIController extends Turn implements Initializable // Making 'T
         if (X2.isSelected()) {
             O1.setSelected(true);
             // Setting Symbols for players
-            player1.symbol = SymbolsEnum.CROSS;
-            player2.symbol = SymbolsEnum.ROUND;
+            player1.setSymbol(SymbolsEnum.CROSS);
+            player2.setSymbol(SymbolsEnum.ROUND);
         } else if (O2.isSelected()) {
             X1.setSelected(true);
             // Setting Symbols for players
-            player1.symbol = SymbolsEnum.ROUND;
-            player2.symbol = SymbolsEnum.CROSS;
+            player1.setSymbol(SymbolsEnum.ROUND);
+            player2.setSymbol(SymbolsEnum.CROSS);
         }
         // Set initial turn for player with symbol CROSS
-        if (player1.symbol == SymbolsEnum.CROSS) {
+        if (player1.getSymbol() == SymbolsEnum.CROSS) {
             setTurn(player1);
         } else {
             setTurn(player2);
@@ -274,13 +274,13 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     private void draw(double startX, double startY)
     {
         if (getTurn() == player1) {
-            if (player1.symbol == SymbolsEnum.CROSS) {
+            if (player1.getSymbol() == SymbolsEnum.CROSS) {
                 Draw.draw_cross(gc, startX, startY);
             } else {
                 Draw.draw_circle(gc, startX, startY);
             }
         } else if (getTurn() == player2) {
-            if (player2.symbol == SymbolsEnum.CROSS) {
+            if (player2.getSymbol() == SymbolsEnum.CROSS) {
                 Draw.draw_cross(gc, startX, startY);
             } else {
                 Draw.draw_circle(gc, startX, startY);

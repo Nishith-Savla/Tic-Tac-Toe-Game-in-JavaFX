@@ -19,6 +19,5 @@ public class Message
         alert.setHeaderText(null);
         alert.setContentText(msg);
         alert.show();
-
     }
 }

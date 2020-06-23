@@ -3,5 +3,16 @@ package App;
 public class Player
 {
 
-    public SymbolsEnum symbol;
+    private SymbolsEnum symbol;
+
+    public SymbolsEnum getSymbol()
+    {
+        return symbol;
+    }
+
+    public void setSymbol(SymbolsEnum symbol)
+    {
+        this.symbol = symbol;
+    }
+    
 }
