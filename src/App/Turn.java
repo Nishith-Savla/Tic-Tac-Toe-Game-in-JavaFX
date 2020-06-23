@@ -1,9 +1,5 @@
 package App;
 
-/**
- *
- * @author Nishith
- */
 public class Turn
 {
 

@@ -1,25 +1,30 @@
 package App;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Nishith
- */
 public class Result
 {
 
-    protected static List<Integer> player1moves = new ArrayList<>(5);
-    protected static List<Integer> player2moves = new ArrayList<>(5);
+    // Lists to store Moves of both players
+    private static List<Integer> player1moves = new ArrayList<>(5);
+    private static List<Integer> player2moves = new ArrayList<>(5);
 
-    static int[][] possibilities = new int[][]{
+    // List of all total possibilites of win
+    private static int[][] possibilities = new int[][]{
         {1, 2, 3}, {4, 5, 6}, {7, 8, 9},
         {1, 4, 7}, {2, 5, 8}, {3, 6, 9},
         {1, 5, 9}, {3, 5, 7}
     };
 
+    /**
+     * Adds the moves to the moves list
+     *
+     * @param player1 Player 1
+     * @param player2 Player 2
+     * @param num Number of the box
+     * @return Whether it is win or not
+     */
     public static boolean add(Player player1, Player player2, int num)
     {
         if (Turn.getTurn() == player1) {
@@ -30,6 +35,11 @@ public class Result
         return checkWin();
     }
 
+    /**
+     * Checks if it is win or not
+     *
+     * @return Is it win?
+     */
     public static boolean checkWin()
     {
         List<Integer> winInstance = new ArrayList<>();
@@ -48,6 +58,9 @@ public class Result
         return false;
     }
 
+    /**
+     * Clear the list of moves for new game
+     */
     public static void clearMoves()
     {
         player1moves.clear();

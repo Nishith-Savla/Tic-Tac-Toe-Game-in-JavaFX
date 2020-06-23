@@ -3,12 +3,17 @@ package App;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-/**
- * @author Nishith
- */
 public class Draw
 {
 
+    /**
+     * Draws the main 4 lines
+     *
+     * @param gc Graphic Context of the Canvas
+     * @return gc Same Graphic context received as parameter after drawing the
+     * lines
+     *
+     */
     public static GraphicsContext draw_basic_skeleton(GraphicsContext gc)
     {
         gc.setLineWidth(5);
@@ -20,57 +25,32 @@ public class Draw
         return gc;
     }
 
-    /* Some cheat-sheets (co-ordinates) for methods 
+    /**
+     * Draws a cross from the starting points
      *
-     * -- 1st row
-     * 50+15, 50+15
-     * 50+15+70+30, 50+15
-     * 50+15+70+30+70+30, 50+15
-     *
-     * -- 2nd row
-     * 50+15, 50+15+70+30
-     * 50+15+70+30, 50+15+70+30
-     * 50+15+70+30+70+30, 50+15+70+30
-     *
-     * -- 3rd row
-     * 50+15, 50+15+70+30+70+30
-     * 50+15+70+30, 50+15+70+30+70+30
-     * 50+15+70+30+70+30, 50+15+70+30+70+30
-     */
- /*
-    public GraphicsContext draw_try(GraphicsContext gc)
-    {
-        gc=draw.draw_circle(gc, 50+15, 50+15+15);
-        gc=draw.draw_circle(gc, 50+15, 50+15+70+30+15);
-        gc=draw.draw_circle(gc, 50+15, 50+15+70+30+70+30+15);
-        gc=draw.draw_circle(gc, 50+15+70+30, 50+15+15);
-        gc=draw.draw_circle(gc, 50+15+70+30, 50+15+70+30+15);
-        gc=draw.draw_circle(gc, 50+15+70+30, 50+15+70+30+70+30+15);
-        gc=draw.draw_circle(gc, 50+15+70+30+70+30, 50+15+15);
-        gc=draw.draw_circle(gc, 50+15+70+30+70+30, 50+15+70+30+15);
-        gc=draw.draw_circle(gc, 50+15+70+30+70+30, 50+15+70+30+70+30+15);
-        
-        gc=draw.draw_cross(gc, 50+15, 50+15+15);
-        gc=draw.draw_cross(gc, 50+15, 50+15+70+30+15);
-        gc=draw.draw_cross(gc, 50+15, 50+15+70+30+70+30+15);
-        gc=draw.draw_cross(gc, 50+15+70+30, 50+15+15);
-        gc=draw.draw_cross(gc, 50+15+70+30, 50+15+70+30+15);
-        gc=draw.draw_cross(gc, 50+15+70+30, 50+15+70+30+70+30+15);
-        gc=draw.draw_cross(gc, 50+15+70+30+70+30, 50+15+15);
-        gc=draw.draw_cross(gc, 50+15+70+30+70+30, 50+15+70+30+15);
-        gc=draw.draw_cross(gc, 50+15+70+30+70+30, 50+15+70+30+70+30+15);
-        return gc;
-    }
+     * @param gc Graphic Context of the Canvas
+     * @param startX X-coordinate of the point to start drawing from
+     * @param startY Y-coordinate of the point to start drawing from
+     * @return Same Graphic context received as parameter after drawing the
+     * cross
      */
     public static GraphicsContext draw_cross(GraphicsContext gc, double startX, double startY)
     {
         gc.setLineWidth(7);
         gc.strokeLine(startX, startY, startX + 70, startY + 70);
         gc.strokeLine(startX + 70, startY, startX, startY + 70);
-
         return gc;
     }
 
+    /**
+     * Draws a circle (oval) from the starting points
+     *
+     * @param gc Graphic Context of the Canvas
+     * @param startX X-coordinate of the point to start drawing from
+     * @param startY Y-coordinate of the point to start drawing from
+     * @return Same Graphic context received as parameter after drawing the
+     * circle
+     */
     public static GraphicsContext draw_circle(GraphicsContext gc, double startX, double startY)
     {
         gc.setLineWidth(7);

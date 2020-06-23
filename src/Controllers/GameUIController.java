@@ -11,7 +11,6 @@ import com.jfoenix.controls.JFXRadioButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -32,7 +31,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     GraphicsContext gc;
     Player player1;
     Player player2;
-    boolean win;
+    boolean win; // To check has any player won
 
     @FXML
     private AnchorPane aPane;
@@ -40,75 +39,66 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     private Canvas canvas;
 
-    @FXML
+    @FXML // 9 boxes to draw 
     private JFXButton b1;
-
     @FXML
     private JFXButton b2;
-
     @FXML
     private JFXButton b3;
-
     @FXML
     private JFXButton b4;
-
     @FXML
     private JFXButton b5;
-
     @FXML
     private JFXButton b6;
-
     @FXML
     private JFXButton b7;
-
     @FXML
     private JFXButton b8;
-
     @FXML
     private JFXButton b9;
 
     @FXML
     private JFXRadioButton X1;
-
     @FXML
     private JFXRadioButton O1;
 
     @FXML
-    private ToggleGroup GroupP1;
+    private ToggleGroup GroupP1; // ToggleGroup for player1 radiobuttons
 
     @FXML
     private JFXRadioButton X2;
-
     @FXML
     private JFXRadioButton O2;
 
     @FXML
-    private ToggleGroup GroupP2;
+    private ToggleGroup GroupP2; // ToggleGroup for player2 radiobuttons
 
-    @FXML
+    @FXML // Reset / NewGame button
     private JFXButton reset;
 
+    /**
+     * The radio button event ti=o select the clicked and also to select the
+     * opposite for other player (Player 2 here)
+     *
+     * @param event OnClick Action Event
+     */
     @FXML
     void player1Symbol(ActionEvent event)
     {
-        b1.setDisable(false);
-        b2.setDisable(false);
-        b3.setDisable(false);
-        b4.setDisable(false);
-        b5.setDisable(false);
-        b6.setDisable(false);
-        b7.setDisable(false);
-        b8.setDisable(false);
-        b9.setDisable(false);
+        setAllDisable(false);
         if (X1.isSelected()) {
             O2.setSelected(true);
+            // Setting Symbols for players
             player1.symbol = SymbolsEnum.CROSS;
             player2.symbol = SymbolsEnum.ROUND;
-        } else {
+        } else if (O1.isSelected()) {
             X2.setSelected(true);
+            // Setting Symbols for players
             player1.symbol = SymbolsEnum.ROUND;
             player2.symbol = SymbolsEnum.CROSS;
         }
+        // Set initial turn for player with symbol CROSS
         if (player1.symbol == SymbolsEnum.CROSS) {
             setTurn(player1);
         } else {
@@ -116,27 +106,28 @@ public class GameUIController extends Turn implements Initializable // Making 'T
         }
     }
 
+    /**
+     * The radio button event ti=o select the clicked and also to select the
+     * opposite for other player (Player 1 here)
+     *
+     * @param event OnClick Action Event
+     */
     @FXML
     void player2Symbol(ActionEvent event)
     {
-        b1.setDisable(false);
-        b2.setDisable(false);
-        b3.setDisable(false);
-        b4.setDisable(false);
-        b5.setDisable(false);
-        b6.setDisable(false);
-        b7.setDisable(false);
-        b8.setDisable(false);
-        b9.setDisable(false);
+        setAllDisable(false);
         if (X2.isSelected()) {
             O1.setSelected(true);
+            // Setting Symbols for players
             player1.symbol = SymbolsEnum.CROSS;
             player2.symbol = SymbolsEnum.ROUND;
-        } else {
+        } else if (O2.isSelected()) {
             X1.setSelected(true);
+            // Setting Symbols for players
             player1.symbol = SymbolsEnum.ROUND;
             player2.symbol = SymbolsEnum.CROSS;
         }
+        // Set initial turn for player with symbol CROSS
         if (player1.symbol == SymbolsEnum.CROSS) {
             setTurn(player1);
         } else {
@@ -147,22 +138,27 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void resetButton(ActionEvent event)
     {
-        System.out.println("Restarting app!");
-        ((Stage) reset.getScene().getWindow()).close();
-        Platform.runLater(() -> {
-            try {
-                new Main().start(new Stage());
-                Result.clearMoves();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        });
+        ((Stage) reset.getScene().getWindow()).close(); // Close the recent window so that there remains only one window
+        // Running a new instance of the start method
+        try {
+            new Main().start(new Stage());
+            Result.clearMoves();
+        } catch (IOException ex) {
+            ex.getMessage();
+        }
     }
 
+    /*
+     * --------------- This is same for all 9 buttonEvents ---------------
+     *
+     * win = Result.add(player1, player2, 'boxnumber'); -->> Add the number of box to the moves of the respective player and check if there is a win 
+     * draw(50 + 15, 50 + 15 + 15); -->> Draw and if win is false show alert -> this is included in draw function
+     * ChangeTurn(); -->> This will happen only if win is false 
+     * buttonNumber.setDisable(true); -->> Disable the button for further overwriting
+     */
     @FXML
     void eventb1(ActionEvent event)
     {
-
         win = Result.add(player1, player2, 1);
         draw(50 + 15, 50 + 15 + 15);
         ChangeTurn();
@@ -256,6 +252,9 @@ public class GameUIController extends Turn implements Initializable // Making 'T
         gc = Draw.draw_basic_skeleton(gc);
     }
 
+    /**
+     * Changes the turn to the other player
+     */
     private void ChangeTurn()
     {
         if (getTurn() == player1) {
@@ -265,6 +264,13 @@ public class GameUIController extends Turn implements Initializable // Making 'T
         }
     }
 
+    /**
+     * Calls the appropriate draw function as per the players turn and symbol.
+     * shows alert if win is true and if yes disables all buttons
+     *
+     * @param startX X-coordinate of the point to start drawing from
+     * @param startY Y-coordinate of the point to start drawing from
+     */
     private void draw(double startX, double startY)
     {
         if (getTurn() == player1) {
@@ -280,28 +286,46 @@ public class GameUIController extends Turn implements Initializable // Making 'T
                 Draw.draw_circle(gc, startX, startY);
             }
         }
+
+        // Check if there is win and if yes show alert 
         if (win) {
             if (Turn.getTurn() == player1) {
                 showAlert("Player1");
             } else {
                 showAlert("Player2");
             }
-            b1.setDisable(true);
-            b2.setDisable(true);
-            b3.setDisable(true);
-            b4.setDisable(true);
-            b5.setDisable(true);
-            b6.setDisable(true);
-            b7.setDisable(true);
-            b8.setDisable(true);
-            b9.setDisable(true);
+            // Disables all buttons to stop the game
+            setAllDisable(true);
         }
     }
 
+    /**
+     * Disables or enable s all buttons as per the user choice
+     *
+     * @param option This could be ture or false
+     */
+    private void setAllDisable(boolean option)
+    {
+        b1.setDisable(option);
+        b2.setDisable(option);
+        b3.setDisable(option);
+        b4.setDisable(option);
+        b5.setDisable(option);
+        b6.setDisable(option);
+        b7.setDisable(option);
+        b8.setDisable(option);
+        b9.setDisable(option);
+    }
+
+    /**
+     * Shows Alert with the player name
+     *
+     * @param player Player who won or whose turn is it now
+     */
     private void showAlert(String player)
     {
-        Alerts.Message.setMessage("Congratulations, " + player + " wins!");
-//        Main.restart((Stage)aPane.getScene().getWindow(), reset);
+        Alerts.Message.showMessage("Congratulations, " + player + " wins!");
+        resetButton(new ActionEvent());
     }
 
 }
