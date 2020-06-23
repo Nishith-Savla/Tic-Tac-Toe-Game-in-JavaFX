@@ -1,9 +1,12 @@
 # Netbeans Project directories
 nbproject/
-dist/
 test/
 
 # Build files
+dist/javadoc/
+dist/web
+dist/TicTacToe Game.html
+dist/TicTacToe Game.jnlp
 build/
 build.xml
 
