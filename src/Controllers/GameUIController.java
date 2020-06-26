@@ -73,7 +73,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     private Label u2;
 
-    
+    // JFXRadiobuttons for symbol choice of player1
     @FXML
     private JFXRadioButton X1;
     @FXML
@@ -82,6 +82,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     private ToggleGroup GroupP1; // ToggleGroup for player1 radiobuttons
 
+    // JFXRadiobuttons for symbol choice of player2
     @FXML
     private JFXRadioButton X2;
     @FXML
@@ -90,7 +91,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     private ToggleGroup GroupP2; // ToggleGroup for player2 radiobuttons
 
-    @FXML // Reset / NewGame button
+    @FXML // Reset or NewGame button
     private JFXButton reset;
 
     /**
@@ -117,6 +118,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
         // Set initial turn for player with symbol CROSS
         if (player1.getSymbol() == SymbolsEnum.CROSS) {
             setTurn(player1);
+            // Setting underlines visible or invisible acc to player turn
             u1.setVisible(true);
             u2.setVisible(false);
         } else {
@@ -150,6 +152,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
         // Set initial turn for player with symbol CROSS
         if (player1.getSymbol() == SymbolsEnum.CROSS) {
             setTurn(player1);
+            // Setting underlines visible or invisible acc to player turn
             u1.setVisible(true);
             u2.setVisible(false);
         } else {
@@ -292,6 +295,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     {
         if (getTurn() == player1) {
             setTurn(player2);
+            // Setting underlines visible or invisible acc to player turn
             u1.setVisible(true);
             u2.setVisible(false);
         } else {
@@ -355,7 +359,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     }
 
     /**
-     * Disables or enables all radio buttons
+     * Disables or enables all radio buttons and the textfields
      *
      * @param option This could be true or false
      */
