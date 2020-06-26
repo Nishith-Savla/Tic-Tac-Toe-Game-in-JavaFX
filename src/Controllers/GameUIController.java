@@ -60,12 +60,20 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     private JFXButton b9;
 
-    // Labels for players
+    // JFXTextFields for players
     @FXML
     private JFXTextField p1;
     @FXML
     private JFXTextField p2;
 
+    // Labels for underline
+    @FXML
+    private Label u1;
+
+    @FXML
+    private Label u2;
+
+    
     @FXML
     private JFXRadioButton X1;
     @FXML
@@ -109,12 +117,12 @@ public class GameUIController extends Turn implements Initializable // Making 'T
         // Set initial turn for player with symbol CROSS
         if (player1.getSymbol() == SymbolsEnum.CROSS) {
             setTurn(player1);
-//            p1.setUnderline(true);
-//            p2.setUnderline(false);
+            u1.setVisible(true);
+            u2.setVisible(false);
         } else {
             setTurn(player2);
-//            p2.setUnderline(true);
-//            p1.setUnderline(false);
+            u2.setVisible(true);
+            u1.setVisible(false);
         }
     }
 
@@ -142,12 +150,12 @@ public class GameUIController extends Turn implements Initializable // Making 'T
         // Set initial turn for player with symbol CROSS
         if (player1.getSymbol() == SymbolsEnum.CROSS) {
             setTurn(player1);
-//            p1.setUnderline(true);
-//            p2.setUnderline(false);
+            u1.setVisible(true);
+            u2.setVisible(false);
         } else {
             setTurn(player2);
-//            p2.setUnderline(true);
-//            p1.setUnderline(false);
+            u2.setVisible(true);
+            u1.setVisible(false);
         }
     }
 
@@ -284,13 +292,12 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     {
         if (getTurn() == player1) {
             setTurn(player2);
-//            p1.setUnderline(false);
-//            p2.setUnderline(true);
-
+            u1.setVisible(true);
+            u2.setVisible(false);
         } else {
             setTurn(player1);
-//            p1.setUnderline(true);
-//            p2.setUnderline(false);
+            u2.setVisible(true);
+            u1.setVisible(false);
         }
     }
 

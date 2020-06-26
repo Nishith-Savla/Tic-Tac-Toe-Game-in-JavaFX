@@ -4,34 +4,34 @@
 */
 
 /*Anchor Pane*/
-#aPane
-{
+#aPane {
     -fx-background-color: #000;
 }
 
-/*All labels i.e player1 & Player2*/
-JFXTextField, Label
-{
+/*All JFXTextFields i.e player1 & Player2 and Labels */
+JFXTextField, Label {
     -fx-text-fill: #fff;
     -fx-font: 16px "Saira Condensed Light";
 }
 
+/* Underlines for player 1 & 2 */
+#u1, #u2 {
+    -fx-font: bold 16px "Comic Sans Ms" ;
+}
+
 /*All JButtons including 9 boxes and restart button*/
-JFXButton
-{
+JFXButton {
     -fx-background-color: transparent;
 }
 
 /*2 radio buttons for both players to choose the symbol*/
-JFXRadioButton
-{
+JFXRadioButton {
     -fx-text-fill: #fff;
     -fx-font: 14px "Comic Sans MS";
 }
 
 /*New game button*/
-#reset
-{
+#reset {
     -fx-font: 14px "Comic Sans MS";
     -fx-background-color: #fff;
 }
