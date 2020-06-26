@@ -8,6 +8,7 @@ import App.SymbolsEnum;
 import App.Turn;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -61,9 +62,9 @@ public class GameUIController extends Turn implements Initializable // Making 'T
 
     // Labels for players
     @FXML
-    private Label p1;
+    private JFXTextField p1;
     @FXML
-    private Label p2;
+    private JFXTextField p2;
 
     @FXML
     private JFXRadioButton X1;
@@ -108,12 +109,12 @@ public class GameUIController extends Turn implements Initializable // Making 'T
         // Set initial turn for player with symbol CROSS
         if (player1.getSymbol() == SymbolsEnum.CROSS) {
             setTurn(player1);
-            p1.setUnderline(true);
-            p2.setUnderline(false);
+//            p1.setUnderline(true);
+//            p2.setUnderline(false);
         } else {
             setTurn(player2);
-            p2.setUnderline(true);
-            p1.setUnderline(false);
+//            p2.setUnderline(true);
+//            p1.setUnderline(false);
         }
     }
 
@@ -141,12 +142,12 @@ public class GameUIController extends Turn implements Initializable // Making 'T
         // Set initial turn for player with symbol CROSS
         if (player1.getSymbol() == SymbolsEnum.CROSS) {
             setTurn(player1);
-            p1.setUnderline(true);
-            p2.setUnderline(false);
+//            p1.setUnderline(true);
+//            p2.setUnderline(false);
         } else {
             setTurn(player2);
-            p2.setUnderline(true);
-            p1.setUnderline(false);
+//            p2.setUnderline(true);
+//            p1.setUnderline(false);
         }
     }
 
@@ -174,7 +175,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void eventb1(ActionEvent event)
     {
-        disableRadioButtons(true);
+        disableChoices(true);
         win = Result.add(player1, player2, 1);
         draw(50 + 15, 50 + 15 + 15);
         ChangeTurn();
@@ -184,7 +185,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void eventb2(ActionEvent event)
     {
-        disableRadioButtons(true);
+        disableChoices(true);
         win = Result.add(player1, player2, 2);
         draw(50 + 15 + 70 + 30, 50 + 15 + 15);
         ChangeTurn();
@@ -194,7 +195,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void eventb3(ActionEvent event)
     {
-        disableRadioButtons(true);
+        disableChoices(true);
         win = Result.add(player1, player2, 3);
         draw(50 + 15 + 70 + 30 + 70 + 30, 50 + 15 + 15);
         ChangeTurn();
@@ -204,7 +205,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void eventb4(ActionEvent event)
     {
-        disableRadioButtons(true);
+        disableChoices(true);
         win = Result.add(player1, player2, 4);
         draw(50 + 15, 50 + 15 + 70 + 30 + 15);
         ChangeTurn();
@@ -214,7 +215,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void eventb5(ActionEvent event)
     {
-        disableRadioButtons(true);
+        disableChoices(true);
         win = Result.add(player1, player2, 5);
         draw(50 + 15 + 70 + 30, 50 + 15 + 70 + 30 + 15);
         ChangeTurn();
@@ -224,7 +225,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void eventb6(ActionEvent event)
     {
-        disableRadioButtons(true);
+        disableChoices(true);
         win = Result.add(player1, player2, 6);
         draw(50 + 15 + 70 + 30 + 70 + 30, 50 + 15 + 70 + 30 + 15);
         ChangeTurn();
@@ -234,7 +235,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void eventb7(ActionEvent event)
     {
-        disableRadioButtons(true);
+        disableChoices(true);
         win = Result.add(player1, player2, 7);
         draw(50 + 15, 50 + 15 + 70 + 30 + 70 + 30 + 15);
         ChangeTurn();
@@ -244,7 +245,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void eventb8(ActionEvent event)
     {
-        disableRadioButtons(true);
+        disableChoices(true);
         win = Result.add(player1, player2, 8);
         draw(50 + 15 + 70 + 30, 50 + 15 + 70 + 30 + 70 + 30 + 15);
         ChangeTurn();
@@ -254,7 +255,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     @FXML
     void eventb9(ActionEvent event)
     {
-        disableRadioButtons(true);
+        disableChoices(true);
         win = Result.add(player1, player2, 9);
         draw(50 + 15 + 70 + 30 + 70 + 30, 50 + 15 + 70 + 30 + 70 + 30 + 15);
         ChangeTurn();
@@ -283,13 +284,13 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     {
         if (getTurn() == player1) {
             setTurn(player2);
-            p1.setUnderline(false);
-            p2.setUnderline(true);
+//            p1.setUnderline(false);
+//            p2.setUnderline(true);
 
         } else {
             setTurn(player1);
-            p1.setUnderline(true);
-            p2.setUnderline(false);
+//            p1.setUnderline(true);
+//            p2.setUnderline(false);
         }
     }
 
@@ -319,9 +320,9 @@ public class GameUIController extends Turn implements Initializable // Making 'T
         // Check if there is win and if yes show alert 
         if (win) {
             if (Turn.getTurn() == player1) {
-                showAlert("Player1");
+                showAlert(p1.getText());
             } else {
-                showAlert("Player2");
+                showAlert(p2.getText());
             }
             // Disables all buttons to stop the game
             setAllDisable(true);
@@ -351,12 +352,14 @@ public class GameUIController extends Turn implements Initializable // Making 'T
      *
      * @param option This could be true or false
      */
-    private void disableRadioButtons(boolean option)
+    private void disableChoices(boolean option)
     {
         X1.setDisable(option);
         O1.setDisable(option);
         X2.setDisable(option);
         O2.setDisable(option);
+        p1.setDisable(option);
+        p2.setDisable(option);
     }
 
     /**

@@ -10,10 +10,10 @@
 }
 
 /*All labels i.e player1 & Player2*/
-Label
+JFXTextField, Label
 {
     -fx-text-fill: #fff;
-    -fx-font: 17px "Comic Sans MS";
+    -fx-font: 16px "Saira Condensed Light";
 }
 
 /*All JButtons including 9 boxes and restart button*/

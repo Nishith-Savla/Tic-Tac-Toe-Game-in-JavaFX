@@ -17,6 +17,7 @@ public class Main extends Application
         // Loading the FXML file in the root 
         Parent root = FXMLLoader.load(getClass().getResource("/FXML_Files/GameUI.fxml"));
         Scene scene = new Scene(root); // Adding root to a scene
+        scene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@300&display=swap");
         primaryStage.setTitle("TicTacToe Game!");
         primaryStage.setScene(scene);
         primaryStage.show();
