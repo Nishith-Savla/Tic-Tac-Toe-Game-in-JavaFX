@@ -10,6 +10,26 @@ public class Result
     private static List<Integer> player1moves = new ArrayList<>(5);
     private static List<Integer> player2moves = new ArrayList<>(5);
 
+    /**
+     * Getter for private variable player1moves
+     *
+     * @return player1moves
+     */
+    public static List<Integer> getPlayer1moves()
+    {
+        return player1moves;
+    }
+
+    /**
+     * Getter for private variable player2moves
+     *
+     * @return player2moves
+     */
+    public static List<Integer> getPlayer2moves()
+    {
+        return player2moves;
+    }
+
     // List of all total possibilites of win
     private static int[][] possibilities = new int[][]{
         {1, 2, 3}, {4, 5, 6}, {7, 8, 9},
@@ -48,8 +68,10 @@ public class Result
                 winInstance.add(num);
             }
             if (player1moves.containsAll(winInstance)) {
+                player1moves = winInstance;
                 return true;
             } else if (player2moves.containsAll(winInstance)) {
+                player2moves = winInstance;
                 return true;
             }
             winInstance.clear();

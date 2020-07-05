@@ -11,6 +11,9 @@ import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -312,7 +315,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
      * @param startX X-coordinate of the point to start drawing from
      * @param startY Y-coordinate of the point to start drawing from
      */
-    private void draw(double startX, double startY)
+    private void draw(int startX, int startY)
     {
         if (getTurn() == player1) {
             if (player1.getSymbol() == SymbolsEnum.CROSS) {
@@ -328,11 +331,14 @@ public class GameUIController extends Turn implements Initializable // Making 'T
             }
         }
 
-        // Check if there is win and if yes show alert 
+        // Check if there is win and if yes draw a line and show alert 
         if (win) {
+
             if (Turn.getTurn() == player1) {
+                drawLine();
                 showAlert(p1.getText());
             } else {
+                drawLine();
                 showAlert(p2.getText());
             }
             // Disables all buttons to stop the game
@@ -381,7 +387,75 @@ public class GameUIController extends Turn implements Initializable // Making 'T
     private void showAlert(String player)
     {
         Alerts.Message.showMessage("Congratulations, " + player + " wins!");
-        resetButton(new ActionEvent());
+//        resetButton(new ActionEvent());
     }
 
+    /**
+     * Sets coordinates for the draw_winning_line function and calls the
+     * function with the coordinates as parameters
+     */
+    private void drawLine()
+    {
+        List<Integer> winningMoves;
+        if (getTurn() == player1) {
+            winningMoves = Result.getPlayer1moves();
+        } else {
+            winningMoves = Result.getPlayer2moves();
+        }
+        Collections.sort(winningMoves);
+        int startX = 35, startY = 35, endX = 35, endY = 35;
+        switch (winningMoves.get(0)) {
+            case 1:
+                startX += 50 + 15;
+                startY += 50 + 15 + 15;
+                switch (winningMoves.get(2)) {
+                    case 3:
+                        endX += 50 + 15 + 70 + 30 + 70 + 30;
+                        endY += 50 + 15 + 15;
+                        break;
+                    case 7:
+                        endX += 50 + 15;
+                        endY += 50 + 15 + 15 + 70 + 30 + 70 + 30;
+                        break;
+                    case 9:
+                        endX += 50 + 15 + 70 + 30 + 70 + 30;
+                        endY += 50 + 15 + 15 + 70 + 30 + 70 + 30;
+                        break;
+                }
+                break;
+            case 2:
+                startX += 50 + 15 + 70 + 30;
+                startY += 50 + 15 + 15;
+                endX += 50 + 15 + 70 + 30;
+                endY += 50 + 15 + 70 + 30 + 70 + 30 + 15;
+                break;
+            case 3:
+                startX += 50 + 15 + 70 + 30 + 70 + 30;
+                startY += 50 + 15 + 15;
+                switch (winningMoves.get(2)) {
+                    case 7:
+                        endX += 50 + 15;
+                        endY += 50 + 15 + 15 + 70 + 30 + 70 + 30;
+                        break;
+                    case 9:
+                        endX += 50 + 15 + 70 + 30 + 70 + 30;
+                        endY += 50 + 15 + 15 + 70 + 30 + 70 + 30;
+                        break;
+                }
+                break;
+            case 4:
+                startX += 50 + 15;
+                startY += 50 + 15 + 15 + 70 + 30 + 15;
+                endX += 50 + 15 + 70 + 30 + 70 + 30;
+                endY += 50 + 15 + 70 + 30 + 15;
+                break;
+            case 7:
+                startX += 50 + 15;
+                startY += 50 + 15 + 15 + 70 + 30 + 70 + 30;
+                endX += 50 + 15 + 70 + 30 + 70 + 30;
+                endY += 50 + 15 + 15 + 70 + 30 + 70 + 30;
+                break;
+        }
+        Draw.draw_winning_line(gc, startX, startY, endX, endY);
+    }
 }
