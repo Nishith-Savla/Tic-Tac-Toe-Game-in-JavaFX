@@ -2,6 +2,7 @@ package App;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.StrokeLineCap;
 
 public class Draw
 {
@@ -72,6 +73,7 @@ public class Draw
     public static GraphicsContext draw_winning_line(GraphicsContext gc, int startX, int startY, int endX, int endY)
     {
         gc.setLineWidth(5);
+        gc.setLineCap(StrokeLineCap.ROUND);
         gc.setStroke(Color.YELLOW);
         gc.strokeLine(startX, startY, endX, endY);
         return gc;

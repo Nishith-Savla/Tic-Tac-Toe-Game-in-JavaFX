@@ -1,17 +1,11 @@
 package Controllers;
 
-import App.Draw;
-import App.Main;
-import App.Player;
-import App.Result;
-import App.SymbolsEnum;
-import App.Turn;
+import App.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -23,6 +17,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
 /**
@@ -93,6 +88,9 @@ public class GameUIController extends Turn implements Initializable // Making 'T
 
     @FXML
     private ToggleGroup GroupP2; // ToggleGroup for player2 radiobuttons
+
+    @FXML
+    private Line line;
 
     @FXML // Reset or NewGame button
     private JFXButton reset;
@@ -403,6 +401,7 @@ public class GameUIController extends Turn implements Initializable // Making 'T
             winningMoves = Result.getPlayer2moves();
         }
         Collections.sort(winningMoves);
+        /*
         int startX = 35, startY = 35, endX = 35, endY = 35;
         switch (winningMoves.get(0)) {
             case 1:
@@ -456,6 +455,14 @@ public class GameUIController extends Turn implements Initializable // Making 'T
                 endY += 50 + 15 + 15 + 70 + 30 + 70 + 30;
                 break;
         }
+         */
+        int startX, startY, endX, endY;
+        // Adding 35 to move the point to center
+        startX = 35 + (50 + 15) + (winningMoves.get(0) - 1) % 3 * (70 + 30);
+        startY = 35 + (50 + 15 + 15) + (winningMoves.get(0) - 1) / 3 * (70 + 30);
+        endX = 35 + (50 + 15) + (winningMoves.get(2) - 1) % 3 * (70 + 30);
+        endY = 35 + (50 + 15 + 15) + (winningMoves.get(2) - 1) / 3 * (70 + 30);
+
         Draw.draw_winning_line(gc, startX, startY, endX, endY);
     }
 }
